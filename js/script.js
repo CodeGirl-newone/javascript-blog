@@ -1,6 +1,7 @@
 'use strict';
 
 function titleClickHandler(event){
+  event.preventDefault();  //Adres strony nie powinien się już zmieniać przy klikaniu w linki w lewej kolumnie
   const clickedElement = this;
   console.log('Link was clicked!');
 
@@ -22,6 +23,9 @@ function titleClickHandler(event){
     }
 
   /* get 'href' attribute from the clicked link */
+  
+  const articleSelector = clickedElement.getAttribute("href");
+  console.log(articleSelector);
 
   /* find the correct article using the selector (value of 'href' attribute) */
 
