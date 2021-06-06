@@ -45,14 +45,18 @@ function titleClickHandler(event){
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles';
 
+
+
+//modul 5.4 Generowanie listy tytulow
+
 function generateTitleLinks(){
 
   /* remove contents of titleList */
-const titleList =  document.querySelector(optTitleListSelector);
-function clearMessages(){
-	document.getElementById('titleList').innerHTML = '';
-}
-console.log (titleList);
+  const titleList =  document.querySelector(optTitleListSelector);
+  function clearMessages(){
+    document.getElementById('titleList').innerHTML = '';
+  }
+ 
   /* for each article */
 
     /* get the article id */
