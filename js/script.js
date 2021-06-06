@@ -40,3 +40,32 @@ function titleClickHandler(event){
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
   }
+
+  const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
+
+function generateTitleLinks(){
+
+  /* remove contents of titleList */
+const titleList =  document.querySelector(optTitleListSelector);
+function clearMessages(){
+	document.getElementById('titleList').innerHTML = '';
+}
+console.log (titleList);
+  /* for each article */
+
+    /* get the article id */
+
+    /* find the title element */
+
+    /* get the title from the title element */
+
+    /* create HTML of the link */
+
+    /* insert link into titleList */
+
+console.log ("wywołanie funkcji generateTitleLinks" );
+}
+
+generateTitleLinks();
