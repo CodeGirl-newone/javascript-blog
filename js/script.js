@@ -41,7 +41,7 @@ function titleClickHandler(event){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles';
- // optArticleTagsSelector = '.post-tags .list';
+  
 
 function generateTitleLinks(){
 /* remove contents of titleList */
@@ -81,24 +81,22 @@ generateTitleLinks();
 
 
 // moduł 6 Generowanie listy tagów
-/* const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
-  optArticleTagsSelector = '.post-tags .list';  */
-
+const optArticleTagsSelector = '.post-tags .list';
 
 function generateTags(){
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
-  console.log(article);
+  console.log(articles);
   /* START LOOP: for every article: */
   for (let article of articles){
     /* find tags wrapper */
-    
+    const wrapperTags = article.querySelectorAll(optArticleTagsSelector);
+    console.log(wrapperTags);
     /* make html variable with empty string */
-
+    let html = " ";
     /* get tags from data-tags attribute */
-
+    const articleTags = article.getAttribute('data-tags');
+    console.log(articleTags);
     /* split tags into array */
 
     /* START LOOP: for each tag */
