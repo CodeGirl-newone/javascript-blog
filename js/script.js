@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 function titleClickHandler(event){
   event.preventDefault();  //Adres strony nie powinien się już zmieniać przy klikaniu w linki w lewej kolumnie
   const clickedElement = this;
@@ -17,7 +15,6 @@ function titleClickHandler(event){
   clickedElement.classList.add('active');
   console.log('clickedElement:', {clickedElement}, 'aktywny');
   
-
   /* remove class 'active' from all articles */
   const activeArticles = document.querySelectorAll('article.post');
   for(let activeArticle of activeArticles){
@@ -44,6 +41,7 @@ function titleClickHandler(event){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles';
+ // optArticleTagsSelector = '.post-tags .list';
 
 function generateTitleLinks(){
 /* remove contents of titleList */
@@ -80,3 +78,43 @@ function generateTitleLinks(){
   }
 }
 generateTitleLinks();
+
+
+// moduł 6 Generowanie listy tagów
+/* const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
+  optArticleTagsSelector = '.post-tags .list';  */
+
+
+function generateTags(){
+  /* find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+  console.log(article);
+  /* START LOOP: for every article: */
+  for (let article of articles){
+    /* find tags wrapper */
+    
+    /* make html variable with empty string */
+
+    /* get tags from data-tags attribute */
+
+    /* split tags into array */
+
+    /* START LOOP: for each tag */
+
+      /* generate HTML of the link */
+
+      /* add generated code to html variable */
+
+    /* END LOOP: for each tag */
+
+    /* insert HTML of all the links into the tags wrapper */
+  
+
+
+  }
+  /* END LOOP: for every article: */
+}
+
+generateTags();
