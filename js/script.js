@@ -80,7 +80,7 @@ function generateTitleLinks(){
 generateTitleLinks();
 
 
-// moduł 6 Generowanie listy tagów
+// moduł 6.2 Generowanie listy tagów
 const optArticleTagsSelector = '.post-tags .list';
 
 function generateTags(){
@@ -93,7 +93,7 @@ function generateTags(){
     const wrapperTags = article.querySelectorAll(optArticleTagsSelector);
     console.log(wrapperTags);
     /* make html variable with empty string */
-    let html = " ";
+    let html = "";
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
     console.log(articleTags);
@@ -103,8 +103,10 @@ function generateTags(){
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray){
       /* generate HTML of the link */
-      
+      const linkHTMLtag = '<li><a href="#tag- + tag">tag</a></li>';
+      console.log(linkHTMLtag);
       /* add generated code to html variable */
+      html = html + linkHTMLtag;
     console.log(tag);
     }
     /* END LOOP: for each tag */
