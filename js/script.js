@@ -40,7 +40,8 @@ function titleClickHandler(event){
  
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list';
   
 
 function generateTitleLinks(){
@@ -81,8 +82,6 @@ generateTitleLinks();
 
 
 // moduł 6.2 Generowanie listy tagów
-const optArticleTagsSelector = '.post-tags .list';
-
 function generateTags(){
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
@@ -90,7 +89,7 @@ function generateTags(){
   /* START LOOP: for every article: */
   for (let article of articles){
     /* find tags wrapper */
-    const wrapperTags = article.querySelectorAll(optArticleTagsSelector);
+    const wrapperTags = article.querySelector(optArticleTagsSelector);
     console.log(wrapperTags);
     /* make html variable with empty string */
     let html = '';
@@ -107,20 +106,16 @@ function generateTags(){
       console.log(linkHTMLtag);
       /* add generated code to html variable */
       html = html + linkHTMLtag;
-      console.log(html);
-    
       /* END LOOP: for each tag */
-      console.log(tag);
+      console.log(html);
     }
     
     /* insert HTML of all the links into the tags wrapper */
     wrapperTags.innerHTML = html;
-    console.log(html);
     
     /* END LOOP: for every article: */
-    articles.innerHTML = html;
-
+    
   }
+  
 }
-
 generateTags();
