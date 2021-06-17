@@ -121,6 +121,7 @@ generateTags();
 
 
 //moduł 6. Dodajemy akcję po kliknięciu w tag
+
 function tagClickHandler(event){
   /* prevent default action for this event */
   event.preventDefault(); 
@@ -129,11 +130,11 @@ function tagClickHandler(event){
   console.log('Tag został kliknięty');
   /* make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
-  console.log(href + 'został kliknięty');
+  console.log(href + ' został kliknięty');
   /* make a new constant "tag" and extract tag from the "href" constant */
   const tag = href.replace('#tag-', '');
   /* find all tag links with class active */
-  const tagLinks = tag.querySelectorAll('a.active[href^="#tag-"]');
+  const tagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
   console.log(tagLinks);
   /* START LOOP: for each active tag link */
     for (let tagLink of tagLinks){
@@ -143,7 +144,7 @@ function tagClickHandler(event){
     console.log('Usunięta klasa activ');
     }
   /* find all tag links with "href" attribute equal to the "href" constant */
-  const tagLinksHref = tagLinks.querySelectorAll('a.active[href^="#tag-"]');
+  const tagLinksHref = tagLinks.querySelectorAll('href');
   /* START LOOP: for each found tag link */
     for (let tagLinkHref of tagLinksHref){
     /* add class active */
@@ -152,22 +153,45 @@ function tagClickHandler(event){
     console.log(tagLinkHref);
     }
   /* execute function "generateTitleLinks" with article selector as argument */
+  generateTitleLinks('[data-tags~="' + tag + '"]');
 }
-//generateTitleLinks('[data-tags~="' + tag + '"]');
-
-
-
-
-
 
 
 function addClickListenersToTags(){
 /* find all links to tags */
+const links = document.querySelectorAll('a[href^="#tag-"]');
+console.log(links);
 /* START LOOP: for each link */
-
-/* add tagClickHandler as event listener for that link */
-
+  for(let link of links){
+  /* add tagClickHandler as event listener for that link */
+  link.addEventListener('click', tagClickHandler);
 /* END LOOP: for each link */
+  }
 }
-
 addClickListenersToTags();
+
+
+
+
+
+/*
+// moduł 6. Dodajemy autorów
+const optArticleAuthorSelector = '.post-author';
+
+//debugger
+function generateAuthors(){
+  //find all authors
+  const authors = document.querySelectorAll(optArticleAuthorSelector);
+  console.log(authors);
+  //find author to every article (for-of)
+  for (let author of authors){
+    const authorName = authors.getAttribute(optArticleAuthorSelector);
+    console.log(authorName);
+    //make html variable with empty string
+    //let html = '';
+
+
+  }
+}
+generateAuthors();
+*/
