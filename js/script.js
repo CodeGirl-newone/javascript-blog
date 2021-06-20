@@ -169,26 +169,51 @@ addClickListenersToTags();
 
 
 
-
-
-/*
 // moduł 6. Dodajemy autorów
 const optArticleAuthorSelector = '.post-author';
 
-//debugger
+//Generowanie listy autorów
 function generateAuthors(){
-  //find all authors
-  const authors = document.querySelectorAll(optArticleAuthorSelector);
-  console.log(authors);
-  //find author to every article (for-of)
-  for (let author of authors){
-    const authorName = authors.getAttribute(optArticleAuthorSelector);
-    console.log(authorName);
-    //make html variable with empty string
-    //let html = '';
-
-
+  //find all articles
+  const articles = document.querySelectorAll(optArticleSelector);
+  console.log(articles);
+  //LOOP: for every article find author (for-of)
+  for (let article of articles){
+    /* find authors wrapper */
+    const wrapperAuthors =  article.querySelector(optArticleAuthorSelector);
+    console.log(wrapperAuthors);
+    /* make html variable with empty string */
+    let html = '';
+    /* get authors from data-author attribute */
+    const articleAuthors = article.getAttribute('data-author');
+    console.log(articleAuthors);
+    /* LOOP: for each author generate HTML of the link */
+    //for (articleAuthor of articleAuthors){
+      const linkHTMLauthor = ' by: <a href="#author-' + articleAuthors + '">' + articleAuthors + ' </a>';
+      console.log(linkHTMLauthor);
+      /* add generated code to html variable */
+      html = html + linkHTMLauthor;
+      console.log(html);
+    //}
+  /* insert HTML of all the links into the tags wrapper */
+  wrapperAuthors.innerHTML = html;
   }
 }
 generateAuthors();
-*/
+
+
+
+
+
+
+
+// //Powiązanie kliknięcia z autorem
+// function addClickListenersToAuthors(){
+
+// }
+// addClickListenersToAuthors();  //'[data-tags   =  "' + tag + '"]'
+
+// function authorClickHandler(event){
+
+//   generateTitleLinks();
+// }
