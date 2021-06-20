@@ -227,7 +227,7 @@ function authorClickHandler(event){
     console.log(authorLinkHref);
   }
   /* execute function "generateTitleLinks" with article selector as argument */
-  generateTitleLinks('[data-tags="' + author + '"]');
+  generateTitleLinks('[data-author="' + author + '"]');
 }
 
 
