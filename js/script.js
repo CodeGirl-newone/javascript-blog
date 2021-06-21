@@ -91,7 +91,7 @@ function generateTags(){
   for (let article of articles){
     /* find tags wrapper */
     const wrapperTags = article.querySelector(optArticleTagsSelector);
-    console.log(wrapperTags);
+    console.log({wrapperTags});
     /* make html variable with empty string */
     let html = '';
     /* get tags from data-tags attribute */
@@ -235,7 +235,7 @@ function authorClickHandler(event){
 function addClickListenersToAuthors(){
   /* find all links to authors */
   const links = document.querySelectorAll('a[href^="#author-"]');
-  console.log(links);
+  console.log({links});
   /* LOOP: for each link add authorClickHandler as event listener for that link */
   for(let link of links){
     link.addEventListener('click', authorClickHandler);
@@ -243,10 +243,14 @@ function addClickListenersToAuthors(){
 }
 addClickListenersToAuthors();
 
-// moduł 6. Wyświetlenie listy tagów
-optTagsListSelector = '.tags.list';
 
-function generateTags(){
+
+
+
+// moduł 6. Wyświetlenie listy tagów
+const optTagsListSelector = '.tags.list';
+
+function generateTagsLeft(){
   /* [NEW] create a new variable allTags with an empty array */
   let allTags = [];
   /* find all articles */
@@ -254,6 +258,7 @@ function generateTags(){
   /* START LOOP: for every article find tags wrapper */
   for (let article of articles){
     const wrapperTags = article.querySelector(optArticleTagsSelector);
+    console.log({wrapperTags});
     /* make html variable with empty string */
     let html = '';
     /* get tags from data-tags attribute */
@@ -269,12 +274,12 @@ function generateTags(){
       /* add generated code to html variable */
       html = html + linkHTMLtag;
       /* [NEW] check if this link is NOT already in allTags */
-      if(allTags.indexOf(linkHTML) == -1){
+      if(allTags.indexOf(linkHTMLtag) == -1){
         /* [NEW] add generated code to allTags array */
-        allTags.push(linkHTML);
+        allTags.push(linkHTMLtag);
       }
     /* END LOOP: for each tag */
-    console.log(linkHTML);
+    console.log(linkHTMLtag);
     }
     /* insert HTML of all the links into the tags wrapper */
     wrapperTags.innerHTML = html;
@@ -287,4 +292,5 @@ function generateTags(){
   /* [NEW] add html from allTags to tagList */
   tagList.innerHTML = allTags.join(' ');
 }
+generateTagsLeft();
 
