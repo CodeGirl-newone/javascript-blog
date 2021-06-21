@@ -242,3 +242,49 @@ function addClickListenersToAuthors(){
   }
 }
 addClickListenersToAuthors();
+
+// moduł 6. Wyświetlenie listy tagów
+optTagsListSelector = '.tags.list';
+
+function generateTags(){
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
+  /* find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+  /* START LOOP: for every article find tags wrapper */
+  for (let article of articles){
+    const wrapperTags = article.querySelector(optArticleTagsSelector);
+    /* make html variable with empty string */
+    let html = '';
+    /* get tags from data-tags attribute */
+    const articleTags = article.getAttribute('data-tags');
+    console.log(articleTags);
+    /* split tags into array */
+    const articleTagsArray = articleTags.split(' ');
+    console.log({articleTagsArray});
+    /* START LOOP: for each tag */
+    for (let tag of articleTagsArray){
+      /* generate HTML of the link */
+      const linkHTMLtag = '<li><a href="#tag-'+ tag +'">'+ tag +'</a></li> ';
+      /* add generated code to html variable */
+      html = html + linkHTMLtag;
+      /* [NEW] check if this link is NOT already in allTags */
+      if(allTags.indexOf(linkHTML) == -1){
+        /* [NEW] add generated code to allTags array */
+        allTags.push(linkHTML);
+      }
+    /* END LOOP: for each tag */
+    console.log(linkHTML);
+    }
+    /* insert HTML of all the links into the tags wrapper */
+    wrapperTags.innerHTML = html;
+  /* END LOOP: for every article: */
+  console.log(html);
+  }
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector('.tags');
+
+  /* [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
+}
+
