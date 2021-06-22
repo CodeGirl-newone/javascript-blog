@@ -250,15 +250,15 @@ addClickListenersToAuthors();
 // moduł 6. Wyświetlenie listy tagów
 const optTagsListSelector = '.tags.list';
 
-function generateTagsLeft(){
-  /* [NEW] create a new variable allTags with an empty array */
-  let allTags = [];
+function generateTagsRight(){
+  /* [NEW] create a new variable allTags with an empty object */
+  let allTags = {};
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   /* START LOOP: for every article find tags wrapper */
   for (let article of articles){
-    const wrapperTags = article.querySelector(optArticleTagsSelector);
-    console.log({wrapperTags});
+    const wrapperTag = article.querySelector(optArticleTagsSelector);
+    console.log({wrapperTag});
     /* make html variable with empty string */
     let html = '';
     /* get tags from data-tags attribute */
@@ -270,27 +270,41 @@ function generateTagsLeft(){
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray){
       /* generate HTML of the link */
-      const linkHTMLtag = '<li><a href="#tag-'+ tag +'">'+ tag +'</a></li> ';
+      const linkHTML = '<li><a href="#tag-'+ tag +'">'+ tag +'</a></li>';
       /* add generated code to html variable */
-      html = html + linkHTMLtag;
+      html = html + linkHTML;
       /* [NEW] check if this link is NOT already in allTags */
-      if(allTags.indexOf(linkHTMLtag) == -1){
+      if(!allTags.hasOwnProperty(tag)){
         /* [NEW] add generated code to allTags array */
-        allTags.push(linkHTMLtag);
-      }
-    /* END LOOP: for each tag */
-    console.log(linkHTMLtag);
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
+      } 
+      /* END LOOP: for each tag */
+      console.log(linkHTML);
     }
     /* insert HTML of all the links into the tags wrapper */
-    wrapperTags.innerHTML = html;
-  /* END LOOP: for every article: */
-  console.log(html);
+    wrapperTag.innerHTML = html;
+    /* END LOOP: for every article: */
+    console.log(html);
   }
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector('.tags');
 
-  /* [NEW] add html from allTags to tagList */
-  tagList.innerHTML = allTags.join(' ');
+  /* [NEW] add html from allTags to tagList 
+  //tagList.innerHTML = allTags.join(' ');     Poprzednia wersja kodu*/
+  
+  //[NEW] create variable for all links HTML code     Nowa wersja kodu
+  let allTagsHTML = '';
+  //[NEW] start loop: for each tag in allTags
+  for (let tag in allTags){
+    //[NEW] generate code of a link and add it to allTagsHTML
+    allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+    
+  
+    //[NEW] end loop for each tag in allTags
+  }
+  //[NEW] add HTML from allTagsHTML to tagList
+  tagList.innerHTML = allTagsHTML;
 }
-generateTagsLeft();
-
+generateTagsRight();
