@@ -118,3 +118,40 @@ body {
     margin: 0 10px 0 0;
   }
 }
+
+/* Tags */
+.list.tags li {
+  display: inline;
+}
+.list.tags a {
+  text-decoration: none;
+}
+.tag-size-1 {
+	font-size: 15px;
+  color: brown;
+}
+.tag-size-2 {
+	font-size: 18px;
+  color: cornflowerblue;
+}
+.tag-size-3 {
+	font-size: 21px;
+  color: darkblue;
+}
+.tag-size-4 {
+	font-size: 24px;
+  color: darkmagenta;
+}
+.tag-size-5 {
+	font-size: 27px;
+  color: coral;
+}
+
+.author-size-1 {
+	font-size: 15px;
+  color: darkred;
+}
+.author-size-5 {
+	font-size: 18px;
+  color: forestgreen;
+}

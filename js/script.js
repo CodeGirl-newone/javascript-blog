@@ -41,7 +41,9 @@ function titleClickHandler(event){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optCloudClassCount = 5,
+  optCloudClassPrefix = 'tag-size-';
   
 
 function generateTitleLinks(customSelector = ''){
@@ -250,7 +252,34 @@ addClickListenersToAuthors();
 // moduł 6. Wyświetlenie listy tagów
 const optTagsListSelector = '.tags.list';
 
-function generateTagsRight(){
+function CalculateTagsParams(tags){
+  const params = {
+    max: 0,
+    min: 999999
+  };
+  console.log(params);
+  for(let tag in tags){
+    console.log(tag + ' is used ' + tags[tag] + ' times');
+    if(tags[tag] > params.max){
+      params.max = tags[tag];
+    }
+    if(tags[tag] < params.min){
+      params.min = tags[tag];
+    }
+  }
+  console.log(tags);
+  return params;
+}
+
+function calculateTagClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+  return optCloudClassPrefix + classNumber;
+}
+
+function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
   /* find all articles */
@@ -271,6 +300,8 @@ function generateTagsRight(){
     for (let tag of articleTagsArray){
       /* generate HTML of the link */
       const linkHTML = '<li><a href="#tag-'+ tag +'">'+ tag +'</a></li>';
+      
+
       /* add generated code to html variable */
       html = html + linkHTML;
       /* [NEW] check if this link is NOT already in allTags */
@@ -294,17 +325,27 @@ function generateTagsRight(){
   /* [NEW] add html from allTags to tagList 
   //tagList.innerHTML = allTags.join(' ');     Poprzednia wersja kodu*/
   
+  const tagsParams = CalculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
   //[NEW] create variable for all links HTML code     Nowa wersja kodu
   let allTagsHTML = '';
+
+
   //[NEW] start loop: for each tag in allTags
-  for (let tag in allTags){
+  for(let tag in allTags){
     //[NEW] generate code of a link and add it to allTagsHTML
-    allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+    //allTagsHTML += tag + ' (' + allTags[tag] + ') ';     generuje tylko tag i liczbę, bez linka
+    //allTagsHTML += '<li><a href="#tag-'+ tag +'">'+ tag +'</a>(' + allTags[tag] + ')</li>';
+    //allTagsHTML += '<li><a href="#tag-'+ tag +'" class="'calculateTagClass'">'+ tag +'</a>(' + allTags[tag] + ')</li>';
     
-  
-    //[NEW] end loop for each tag in allTags
+    const tagLinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag +  '</a></li> ';
+    console.log('tagLinkHTML:', tagLinkHTML);
+    allTagsHTML += tagLinkHTML;
   }
+  
+  //[NEW] end loop for each tag in allTags
+  
   //[NEW] add HTML from allTagsHTML to tagList
   tagList.innerHTML = allTagsHTML;
 }
-generateTagsRight();
+generateTags();
